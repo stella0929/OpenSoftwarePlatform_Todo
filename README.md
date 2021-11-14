@@ -1,1 +1,1 @@
-2021-2 OpenSoftwarePlatform TodoApp 1511186 Sohyeon Cho
+2021-2 OpenSoftwarePlatform Todo-App 1511186 Sohyeon Cho 
