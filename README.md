@@ -1,2 +1,2 @@
-2021-2 OpenSoftwarePlatform TodoAPP 
-1871050 Suhyun Jeong
+# OpenSoftwarePlatform_Todo
+1511186 Sohyeon Cho Readme update
