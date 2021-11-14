@@ -1,1 +1,0 @@
-2021-2 OpenSoftwarePlatform TodoApp 1511186 Sohyeon Cho
