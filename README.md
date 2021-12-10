@@ -21,4 +21,11 @@ CREATE TABLE user (id VARCHAR(100) PRIMARY KEY, name VARCHAR(100) NOT NULL, pass
 alter user 'team14'@'%' identified with mysql_native_password by 'team14';
  UPDATE mysql.user SET Host='%' WHERE Host='localhost' AND User='team14';
 
---> user table에 level column 붙일 예정
+--> 
+ALTER TABLE user ADD COLUMN level INT NOT NULL default 1;
+
+
+npm i @react-native-community/async-storage
+npm install react-native-progress --save
+
+npm start --reset-cache

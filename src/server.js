@@ -30,12 +30,39 @@ app.post("/login", (req, res) => {
     }
     else{
       res.send({
-        success: 1
+        success: 1,
+        level: data[0].level
      });
     }
   });
 });
-
+app.post("/levelup", (req, res) => {
+    const id = req.body.id; // levelup 호출시 AsyncStorage에 있는 id값 넣어줘야함
+    connection.query("UPDATE user set level = level+1 WHERE id=?",[id],function(err,data){
+      if(err){
+        console.log(err);
+      } else {
+        res.send({
+          success: 1 // level up 해준뒤에 AsyncStorage에 있는 level값 +1 해줘야함. 
+          //아래 주석처리 해놓은 getlevel통해 가져올 수있지만 db접근하는것 보다 local storage로 관리하는게 더 낫다고 생각함.
+       });// level을 db에서 계속 가져와서 업데이트 해주는것보다 db는 levelup할때와 로그인시에만 접근하게 구성함.
+       // 보통은 AsyncStorage에서 읽어와서 사용자 보여줌.
+      }
+  });
+});
+/*
+app.post("/getlevel", (req, res) => {
+  const id = req.body.id; // getlevel 호출시 AsyncStorage에 있는 id값 넣어줘야함
+  connection.query("SELECT level FROM user WHERE id=?",[id],function(err,data){
+    if(err){
+      console.log(err);
+    } else {
+      res.send({
+        level: data[0]
+     });
+    }
+});
+});*/
 app.post("/signup", (req, res) => {
   const userName = req.body.userName;
   const userId = req.body.userId;

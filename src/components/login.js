@@ -10,6 +10,7 @@ export default class loginScreen extends Component {
       userId:'',
       userPassword: '',
     }
+    
   }
   
   handleLoginButton = () => {
@@ -29,9 +30,13 @@ export default class loginScreen extends Component {
        
         if (json.success){
           alert('로그인 성공');
-          AsyncStorage.setItem('authenticated','1', () => {
+          AsyncStorage.setItem('authenticated',JSON.stringify(1), () => {
           });
           AsyncStorage.setItem('id',data.userId, () => {
+          }); 
+          AsyncStorage.setItem('level',JSON.stringify(json.level), () => {
+          }); 
+          AsyncStorage.setItem('progress',JSON.stringify(0), () => {
           }); 
           this.props.navigation.navigate('main');
         }
