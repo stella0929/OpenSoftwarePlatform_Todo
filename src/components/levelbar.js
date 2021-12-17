@@ -26,7 +26,7 @@ export default class levelScreen extends Component {
 
   return (    
     <View style={viewStyles.container}>
-      <Text style={textStyles.title}>내 레벨: {this.state.level}</Text>
+      <Text>내 레벨: {this.state.level}</Text>
        <Progress.Bar progress={this.state.progress/100/*다음레벨될때까지의 퍼센트지 localstorage 저장 필요*/} width={200}  /> 
     </View>
   );

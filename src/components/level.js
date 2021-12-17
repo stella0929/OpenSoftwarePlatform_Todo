@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Text, TextInput, View,TouchableOpacity } from 'react-native';
 import { viewStyles, textStyles, loginboxStyles } from '../styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Levelbar from './levelbar';
 
 export default class levelScreen extends Component {
   constructor(props){
@@ -21,6 +22,7 @@ export default class levelScreen extends Component {
   return (
     
     <View style={viewStyles.container}>
+     
        <Text style={textStyles.title}>내 레벨: {this.state.level}</Text>
        <Text >레벨 시스템</Text>
        <Text>bronze (achieve)</Text>
@@ -31,6 +33,7 @@ export default class levelScreen extends Component {
        <Text >레벨 올리기</Text>
        <Text > - 새 목표 만들기</Text>
        <Text > - 활동 내용 인증하기</Text>
+       <Levelbar/>
        <TouchableOpacity onPress={()=> this.back()}>
       <Text style={loginboxStyles.button}>back</Text>
       </TouchableOpacity>
