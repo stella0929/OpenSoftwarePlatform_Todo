@@ -37,7 +37,7 @@ app.post("/login", (req, res) => {
   });
 });
 app.post("/levelup", (req, res) => {
-    const id = req.body.id; // levelup 호출시 AsyncStorage에 있는 id값 넣어줘야함
+    const id = req.body.ID; // levelup 호출시 AsyncStorage에 있는 id값 넣어줘야함
     connection.query("UPDATE user set level = level+1 WHERE id=?",[id],function(err,data){
       if(err){
         console.log(err);

@@ -3,6 +3,7 @@ import { Text, TextInput, View,TouchableOpacity } from 'react-native';
 import { viewStyles, textStyles, loginboxStyles } from '../styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { MaterialCommunityIcons, AntDesign } from "@expo/vector-icons";
 export default class loginScreen extends Component {
   constructor(props){
     super(props);
@@ -38,6 +39,8 @@ export default class loginScreen extends Component {
           }); 
           AsyncStorage.setItem('progress',JSON.stringify(0), () => {
           }); 
+          
+    AsyncStorage.setItem('task',JSON.stringify([]), () => {}); 
           this.props.navigation.navigate('main');
         }
         else{

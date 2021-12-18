@@ -14,7 +14,9 @@ export default class SignupScreen extends Component {
    
     }
   }
-
+  back(){
+    this.props.navigation.navigate('login');
+  }
   handleSubmitButton = () => {
     const {userName, userId,userPassword,userPasswordchk} = this.state;
     if (!userName) {
@@ -80,6 +82,9 @@ export default class SignupScreen extends Component {
      <TouchableOpacity>
      <Text style={loginboxStyles.button} onPress={this.handleSubmitButton} >submit</Text>
      </TouchableOpacity>
+     <TouchableOpacity onPress={()=> this.back()}>
+      <Text style={loginboxStyles.button}>back</Text>
+      </TouchableOpacity>
  
    </View>
     );

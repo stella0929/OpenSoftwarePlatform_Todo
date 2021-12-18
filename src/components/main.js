@@ -24,6 +24,25 @@ function complete(){
         AsyncStorage.setItem('progress',JSON.stringify(0), () => {
         });
       });
+      AsyncStorage.getItem('id', (err, id) => {
+        const data ={ID: id}
+        fetch("http://172.16.11.201:3001/levelup", {
+          method: "post", //통신방법
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((res) => res.json())
+          .then((json) => {
+           
+            if (json.success){
+              alert('levelup');
+            }
+    
+          });
+      });
+    
     }
     AsyncStorage.setItem('progress',JSON.stringify(progress), () => {
     });
@@ -93,36 +112,17 @@ export default class mainScreen extends Component {
      const {id}= this.state;
      this.setState({id: result});
     });
-
+ 
+    AsyncStorage.getItem('task', (err, result) => {
+      
+    this.setState({tasks: JSON.parse(result)
+    });
+    });
+    
     this.state = {
-      tasks : [
-        {
-          task: "알고리즘 풀기",
-          icon: "book",
-          theme: "#FFA500",
-          stamp: "스터디",
-        },
-        {
-          task: "아침 러닝 30분",
-          icon: "weight-lifter",
-          theme: "#CD5C5C",
-          stamp: "운동",
-        },
-        {
-          task: "유산소 30분",
-          icon: "weight-lifter",
-          theme: "#CD5C5C",
-          stamp: "운동",
-        },
-        {
-          task: "과일 주문하기",
-          icon: "fruit-grapes",
-          theme: "#8B008B",
-          stamp: "식단",
-        },
-      ], text: "", id: ""
+      tasks :[], text: "", id: ""
     }
-    AsyncStorage.getItem('authenticated', (err, result) => {
+  AsyncStorage.getItem('authenticated', (err, result) => {
       console.log("constructor진입");
       console.log(result);
       
@@ -132,9 +132,7 @@ export default class mainScreen extends Component {
     });
 
   }
-  completeTask(){
-    this.state.tasks.filter(state.tasks.task !==t.task)
-  }
+
   logout(){
     AsyncStorage.setItem('authenticated',JSON.stringify(0), () => {
     }); 
@@ -148,7 +146,7 @@ export default class mainScreen extends Component {
     
     this.props.navigation.navigate('level');
   }
-  
+
   handleAddTask () {
     const { tasks } = this.state;
     const { text } = this.state;
@@ -156,8 +154,9 @@ export default class mainScreen extends Component {
       tasks: tasks.concat({task: text,
       icon: "fruit-grapes",
       theme: "#8B008B",
-      stamp: "스터디",})
-    })
+      })
+    },()=>AsyncStorage.setItem('task',JSON.stringify(this.state.tasks), () => {}));
+
     
   };
   render(){
@@ -246,12 +245,14 @@ export default class mainScreen extends Component {
       </View>
 
       <ScrollView     style={{ backgroundColor: colors.background }}>
-        {this.state.tasks.map((task) => (
+        {
+      
+        this.state.tasks.map((task) => (
           <Task
             task={task.task}
             icon={task.icon}
             theme={task.theme}
-            stamp={task.stamp}
+          
           />
      
         ))}
