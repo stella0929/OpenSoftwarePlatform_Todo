@@ -162,7 +162,7 @@ export default class mainScreen extends Component {
   };
   render(){
     var notes;
-    if(this.state.tasks.length!=0){
+    if(this.state.tasks.length){
       notes = this.state.tasks.map((task)=>{
         return(
           <Task
