@@ -50,7 +50,7 @@ function complete(){
   });
 
 }
-const Task = ({ task, icon, theme, stamp }) => {
+const Task = ({ task, icon, theme,stamp}) => {
   return (
     
     <View
@@ -120,7 +120,8 @@ export default class mainScreen extends Component {
     });
     
     this.state = {
-      tasks :[], text: "", id: ""
+      tasks :[
+      ], text: "", id: ""
     }
   AsyncStorage.getItem('authenticated', (err, result) => {
       console.log("constructor진입");
@@ -160,6 +161,19 @@ export default class mainScreen extends Component {
     
   };
   render(){
+    var notes;
+    if(this.state.tasks.length!=0){
+      notes = this.state.tasks.map((task)=>{
+        return(
+          <Task
+          task={task.task}
+          icon={task.icon}
+          theme={task.theme}
+        />
+            )
+        });
+    }
+    
   return (
     
     <View
@@ -243,19 +257,9 @@ export default class mainScreen extends Component {
           }}
         />
       </View>
-
-      <ScrollView     style={{ backgroundColor: colors.background }}>
-        {
       
-        this.state.tasks.map((task) => (
-          <Task
-            task={task.task}
-            icon={task.icon}
-            theme={task.theme}
-          
-          />
-     
-        ))}
+      <ScrollView     style={{ backgroundColor: colors.background }}>
+        {notes}
       </ScrollView>
  
       <TouchableOpacity onPress={()=> this.logout()}>
